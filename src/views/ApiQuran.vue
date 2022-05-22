@@ -34,29 +34,31 @@
       <!-- Akhir NavBar -->
     </body>
     <!-- surah -->
-    <section class="search">
+    <!-- Search -->
+    <section>
       <input type="number" v-model="inputnomor" class="input form-control" placeholder="Nomor Surah" />
       <button @click="cari" class="btn btn-lg btn-success">Cari</button>
     </section>
 
-    <section class="surah">
-      <div class="judull">
+    <!-- judul -->
+    <section>
+      <div>
         <h1 v-if="namaSurah" class="judul">{{ namaSurah.name_simple }}</h1>
       </div>
-
-      <div class="audio">
+      <!-- audio -->
+      <div>
         <p v-if="audio">
-          <audio controls class="audioa">
+          <audio controls class="audio">
             <source :src="audio.audio_url" type="audio/mpeg" />
             Your browser does not support the audio element.
           </audio>
         </p>
       </div>
     </section>
-
-    <section class="hasil">
-      <div class="hasill">
-        <ul class="lista">
+    <!-- Output Ayat -->
+    <section>
+      <div>
+        <ul>
           <li class="list-group-item ayat d-flex justify-content-end" v-for="ayat in ayah" :key="ayat.id">{{ ayat.text_uthmani }} {{ ayat.text }}</li>
         </ul>
       </div>
@@ -88,7 +90,7 @@ export default {
       let audio = "https://api.quran.com/api/v4/chapter_recitations/2?language=en";
 
       if (nomor <= 0 || nomor > 114) {
-        alert("masukkan nomor dengan benar");
+        alert("Nomor yang dimasukan salah");
       } else {
         const reqAyat = axios.get(ayat);
         const reqterjemahan = axios.get(terjemahan);
